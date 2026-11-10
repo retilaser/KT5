@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>машинка</title>
+<style>
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  /* кузов */
+  .car {
+    position: absolute;
+    top: calc(50vh - 40px);
+    left: -220px;
+    width: 200px;
+    height: 50px;
+    background: #FF0000;
+    animation: drive 10s linear forwards;   /* анимация */
+  }
+
+  /* фары */
+  .car::after {
+    content: "";
+    position: absolute;
+    right: 8px;
+    top: 14px;
+    width: 12px;
+    height: 12px;
+    background: #FFFF00;
+  }
+
+  /* крыша */
+  .roof {
+    position: absolute;
+    left: 35px;
+    bottom: 100%;
+    width: 90px;
+    height: 35px;
+    background: #FF0000;
+  }
+
+  /* окна */
+  .roof::before,
+  .roof::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    width: 32px;
+    height: 23px;
+    background: #0000FF;
+  }
+  .roof::before { left: 6px; }
+  .roof::after  { right: 6px; }
+
+  /* колеса */
+  .wheel {
+    position: absolute;
+    bottom: -20px;
+    width: 40px;
+    height: 40px;
+    background: #000;
+    z-index: -1;                             /* верх колеса под кузовом */
+  }
+  .wheel.left  { left: 20px; }
+  .wheel.right { left: 140px; }
+
+  /* анимация */
+  @keyframes drive {
+    from { left: -220px; }
+    to   { left: calc(100% - 250px); }       /* конец поездки за 50px до края */
+  }
+</style>
+</head>
+<body>
+  <div class="car">
+    <span class="roof"></span>
+    <span class="wheel left"></span>
+    <span class="wheel right"></span>
+  </div>
+</body>
+</html>
